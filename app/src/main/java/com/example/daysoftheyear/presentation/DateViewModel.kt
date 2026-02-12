@@ -2,7 +2,6 @@ package com.example.daysoftheyear.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.daysoftheyear.data.local.entity.EntryDbo
 import com.example.daysoftheyear.domain.model.DateEntry
 import com.example.daysoftheyear.domain.usecase.JournalUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -47,7 +46,7 @@ class DateViewModel @Inject constructor(
     }
 
 
-    fun onDateClicked(year: Int,  day: Int) = viewModelScope.launch {
+    fun onDateClicked(year: Int, day: Int) = viewModelScope.launch {
         println("on date click ${day}")
         // fetch date details
         // if the date exists in the data base
@@ -64,6 +63,7 @@ class DateViewModel @Inject constructor(
 
             }
         } catch (e: Exception) {
+            println(e.message)
             _state.update {
                 it.copy(
                     activeEntry = DateEntry(
@@ -75,8 +75,6 @@ class DateViewModel @Inject constructor(
             }
         }
 
-
-//
 
     }
 
@@ -113,10 +111,10 @@ class DateViewModel @Inject constructor(
      */
 
 
-    suspend fun mockDataFromDatabase(day: Int): EntryDbo {
-        return EntryDbo(state.value.currentYear, day, "wublahubdub $day")
-            ?: throw Exception("data not found")
-    }
+//    suspend fun mockDataFromDatabase(day: Int): EntryDbo {
+//        return EntryDbo(state.value.currentYear, day, "wublahubdub $day")
+//            ?: throw Exception("data not found")
+//    }
 
 
     // any logic

@@ -2,6 +2,7 @@ package com.example.daysoftheyear.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -10,12 +11,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.toArgb
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.daysoftheyear.ui.theme.Background
 import com.example.daysoftheyear.ui.theme.DaysOfTheYearTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity () : ComponentActivity() {
+class MainActivity() : ComponentActivity() {
 
 
     val viewModel: DateViewModel by viewModels()
@@ -23,7 +26,16 @@ class MainActivity () : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        val backgroundColor = Background
+        enableEdgeToEdge(
+
+            statusBarStyle = SystemBarStyle.dark(
+                scrim = backgroundColor.toArgb()
+            ),
+            navigationBarStyle = SystemBarStyle.dark(
+                scrim = backgroundColor.toArgb()
+            )
+        )
         setContent {
 
             val state = viewModel.state.collectAsStateWithLifecycle()
@@ -31,20 +43,21 @@ class MainActivity () : ComponentActivity() {
 
             DaysOfTheYearTheme {
                 Scaffold(
-                    modifier = Modifier.Companion
+                    modifier = Modifier
                         .fillMaxSize()
                 ) { innerPadding ->
 
 
                     DaysOfTheYearScreen(
-                        modifier = Modifier.Companion.padding(innerPadding),
+                        modifier = Modifier.padding(innerPadding),
                         state,
                         onDismiss = { dateEntry ->
                             viewModel.dateSaved(dateEntry)
                         },
                         onClick = { year, day ->
                             viewModel.onDateClicked(year, day)
-                        })
+                        }
+                    )
                 }
             }
         }
@@ -56,5 +69,6 @@ class MainActivity () : ComponentActivity() {
         //  view model function to check current date
         println("system resumed")
     }
+
 
 }

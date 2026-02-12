@@ -7,7 +7,8 @@ import com.example.daysoftheyear.data.local.entity.EntryDbo
 
 @Database(
     entities = [EntryDbo::class],
-    version = 1
+    version = 1,
+    exportSchema = false
 )
 abstract class EntryDatabase : RoomDatabase(){
     abstract  val entryDao: EntryDao

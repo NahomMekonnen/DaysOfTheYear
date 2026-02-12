@@ -2,14 +2,37 @@
     android:width="108dp"
     android:height="108dp"
     android:viewportWidth="24"
-    android:viewportHeight="24"
-    android:tint="#000000">
-  <group android:scaleX="0.58"
-      android:scaleY="0.58"
-      android:translateX="5.04"
-      android:translateY="5.04">
-      <path
-          android:pathData="M17.6,11.48 L19.44,8.3a0.63,0.63 0,0 0,-1.09 -0.63l-1.88,3.24a11.43,11.43 0,0 0,-8.94 0L5.65,7.67a0.63,0.63 0,0 0,-1.09 0.63L6.4,11.48A10.81,10.81 0,0 0,1 20L23,20A10.81,10.81 0,0 0,17.6 11.48ZM7,17.25A1.25,1.25 0,1 1,8.25 16,1.25 1.25,0 0,1 7,17.25ZM17,17.25A1.25,1.25 0,1 1,18.25 16,1.25 1.25,0 0,1 17,17.25Z"
-          android:fillColor="#FF000000"/>
-  </group>
+    android:viewportHeight="24">
+  <path
+      android:pathData="M9.56,9.15C10.35,9.15 10.99,9.75 10.99,10.49C10.99,11.24 10.35,11.84 9.56,11.84C8.77,11.84 8.13,11.24 8.13,10.49C8.13,9.75 8.77,9.15 9.56,9.15z"
+      android:strokeLineJoin="miter"
+      android:strokeWidth="0.24"
+      android:fillColor="#FAFAFA"
+      android:fillType="nonZero"
+      android:strokeColor="#000000"
+      android:strokeLineCap="square"/>
+  <path
+      android:pathData="M14.26,9.15C15.05,9.15 15.69,9.75 15.69,10.49C15.69,11.24 15.05,11.84 14.26,11.84C13.47,11.84 12.83,11.24 12.83,10.49C12.83,9.75 13.47,9.15 14.26,9.15z"
+      android:strokeLineJoin="miter"
+      android:strokeWidth="0.24"
+      android:fillColor="#FAFAFA"
+      android:fillType="nonZero"
+      android:strokeColor="#000000"
+      android:strokeLineCap="square"/>
+  <path
+      android:pathData="M9.56,13.26C10.35,13.26 10.99,13.86 10.99,14.61C10.99,15.35 10.35,15.95 9.56,15.95C8.77,15.95 8.13,15.35 8.13,14.61C8.13,13.86 8.77,13.26 9.56,13.26z"
+      android:strokeLineJoin="miter"
+      android:strokeWidth="0.24"
+      android:fillColor="#FAFAFA"
+      android:fillType="nonZero"
+      android:strokeColor="#000000"
+      android:strokeLineCap="square"/>
+  <path
+      android:pathData="M14.26,13.26C15.05,13.26 15.69,13.86 15.69,14.61C15.69,15.35 15.05,15.95 14.26,15.95C13.47,15.95 12.83,15.35 12.83,14.61C12.83,13.86 13.47,13.26 14.26,13.26z"
+      android:strokeLineJoin="miter"
+      android:strokeWidth="0.24"
+      android:fillColor="#474747"
+      android:fillType="nonZero"
+      android:strokeColor="#000000"
+      android:strokeLineCap="square"/>
 </vector>
