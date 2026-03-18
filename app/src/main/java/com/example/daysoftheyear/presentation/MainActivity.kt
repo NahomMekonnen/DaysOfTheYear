@@ -25,6 +25,8 @@ class MainActivity() : ComponentActivity() {
 
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
+
+
         super.onCreate(savedInstanceState)
         val backgroundColor = Background
         enableEdgeToEdge(
@@ -66,7 +68,6 @@ class MainActivity() : ComponentActivity() {
     override fun onResume() {
         super.onResume()
         viewModel.getTodayDate()
-        //  view model function to check current date
         println("system resumed")
     }
 

@@ -1,4 +1,4 @@
-package com.example.daysoftheyear.domain.repository
+package com.example.daysoftheyear.data.repository
 
 import com.example.daysoftheyear.domain.model.DateEntry
 import kotlinx.coroutines.flow.Flow

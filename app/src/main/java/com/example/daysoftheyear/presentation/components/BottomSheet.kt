@@ -1,6 +1,8 @@
 package com.example.daysoftheyear.presentation.components
 
-import androidx.compose.animation.core.animateDpAsState
+import android.content.res.Configuration
+import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -28,10 +30,12 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.daysoftheyear.R
 import com.example.daysoftheyear.domain.model.DateEntry
+import com.example.daysoftheyear.ui.theme.Background
 import java.time.LocalDate
 
 
@@ -40,21 +44,19 @@ import java.time.LocalDate
 fun DayOFTheYearBottomSheet(
     entry: DateEntry,
     onDismiss: (DateEntry) -> Unit,
+    configuration: Configuration,
+    beforeHeight: Dp,
+    afterHeight: Dp
 ) {
     var text by rememberSaveable { mutableStateOf<String?>(entry.textInput) }
     val sheetState = rememberModalBottomSheetState(
         skipPartiallyExpanded = true,
     )
-    var isFocused by remember { mutableStateOf(false) }
-    val height by animateDpAsState(
-        targetValue = if (isFocused) 300.dp else 200.dp,
-        animationSpec = tween(
-            durationMillis = 300,
-            delayMillis = 200
-        )
-    )
-    val textFieldColor = Color(0xFF252525)
 
+    var isFocused by remember { mutableStateOf(false) }
+
+    val textFieldColor = Color(0xFF202020)
+    val bottomSheetColor = Background
     val date = LocalDate.ofYearDay(entry.year, entry.day)
     val displayMonth = date.month.toString().lowercase()
     val displayDay = date.dayOfWeek.toString().lowercase()
@@ -72,7 +74,7 @@ fun DayOFTheYearBottomSheet(
             )
         },
         properties = ModalBottomSheetProperties(shouldDismissOnBackPress = false),
-        containerColor = Color(0xFF090909),
+        containerColor = bottomSheetColor,
         sheetState = sheetState
     ) {
         Column(
@@ -89,16 +91,24 @@ fun DayOFTheYearBottomSheet(
                     .padding(start = 16.dp),
                 color = Color.White.copy(alpha = 0.5f),
                 fontFamily = fontFamily,
-                fontWeight = FontWeight.ExtraLight
+                fontWeight = FontWeight.ExtraLight,
+                fontSize = if (configuration.orientation == Configuration.ORIENTATION_PORTRAIT) 16.sp else 12.sp
             )
             OutlinedTextField(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(height)
+                    .height( if (isFocused) afterHeight else beforeHeight)
                     .padding(16.dp)
                     .onFocusChanged {
                         isFocused = it.isFocused
-                    },
+                    }.animateContentSize(
+                        animationSpec = tween(
+//                            durationMillis = 300,
+//                            delayMillis = 400
+                            durationMillis = 250, // Short duration feels snappy
+                            easing = LinearOutSlowInEasing
+                        )
+                    ),
                 value = text ?: "",
                 onValueChange =
                     {

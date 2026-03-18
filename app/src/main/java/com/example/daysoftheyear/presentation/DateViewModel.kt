@@ -85,19 +85,23 @@ class DateViewModel @Inject constructor(
         // on the dbo it upsert
 //
         println("on dismiss")
-        println(DateEntry.summarize(dateEntry!!))
+        println(dateEntry?.summarize())
         println("#")
 
-        withContext(Dispatchers.IO) {
-            // save data
-            journalUseCases.saveDayEntryUseCase(dateEntry)
+        withContext(Dispatchers.IO) { // save data
+            if (dateEntry != null) {
+                journalUseCases.saveDayEntryUseCase(dateEntry)
+            }
+//            viewModelScope.launch {
+                _state.update {
+                    it.copy(
+                        activeEntry = null
+                    )
+//                }
+            }
         }
 
-        _state.update {
-            it.copy(
-                activeEntry = null
-            )
-        }
+
     }
 
     /**
