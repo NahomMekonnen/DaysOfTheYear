@@ -37,3 +37,9 @@ At the heart of the application is a **minimalist dotted grid** representing the
 - `data`: Database configurations, DAOs, and repository implementations.
 - `domain`: Core business models (`DateEntry`) and repository abstractions.
 - `presentation`: Composable screens (`DaysOfTheYearScreen`), ViewModels, and UI components like the `DaysOfTheYear` dot and the `DayOFTheYearBottomSheet`.
+
+
+## Visuals
+![Home](DemoImages/Home.png)
+![Clicking a dot ( a day)](DemoImages/Open.png)
+![Writing into the journal of the day](DemoImages/Write.png)
